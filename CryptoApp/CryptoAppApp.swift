@@ -1,0 +1,17 @@
+//
+//  CryptoAppApp.swift
+//  CryptoApp
+//
+//  Created by Dostan Turlybek on 18.04.2025.
+//
+
+import SwiftUI
+
+@main
+struct CryptoAppApp: App {
+    var body: some Scene {
+        WindowGroup {
+            ContentView()
+        }
+    }
+}
