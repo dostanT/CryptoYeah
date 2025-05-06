@@ -76,6 +76,9 @@ class HomeViewModel: ObservableObject{
         let btcDominance = StatisticModel(title: "BTC Dominance", value: data.btcDominance)
         stats.append(btcDominance)
         
+        stats.append(volume)
+        stats.append(btcDominance)
+        
         let portfolio = StatisticModel(title: "Porfolio Value", value: "$0.00", percetageChange: 0)
         stats.append(portfolio)
         

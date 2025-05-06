@@ -19,12 +19,15 @@ struct HomeStatsView: View{
                     StatisticView(stat: stat)
                         .frame(width: UIScreen.main.bounds.width / 3)
                 }
+                .transition(.move(edge: .leading))
+                
             }
             else {
                 ForEach(vm.statistics[vm.statistics.count/2..<vm.statistics.count]) {stat in
                     StatisticView(stat: stat)
                         .frame(width: UIScreen.main.bounds.width / 3)
                 }
+                .transition(.move(edge: .trailing))
             }
         }
         
