@@ -35,11 +35,11 @@ struct HomeView: View {
                 
                 if !showPortfolio {
                     allCoinsList
-                    .transition(.move(edge: .leading))
+                    
                 }
                 else{
                     portfolioCoinsList
-                    .transition(.move(edge: .trailing))
+                    
                 }
                
                 
