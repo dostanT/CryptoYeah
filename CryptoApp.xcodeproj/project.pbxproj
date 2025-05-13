@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B93B34AE2DD3CF050076D191 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93B34AD2DD3CEFF0076D191 /* HapticManager.swift */; };
 		B9A2358E2DC7B3EC0024C6F1 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A2358D2DC7B3E70024C6F1 /* PortfolioView.swift */; };
 		B9A235902DC7BDDB0024C6F1 /* CoinLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A2358F2DC7BDD70024C6F1 /* CoinLogoView.swift */; };
 		B9A309C62DC25E39002D6857 /* StatisticModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A309C52DC25E2F002D6857 /* StatisticModel.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B93B34AD2DD3CEFF0076D191 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		B99A6BA72DB2BC4A000907E8 /* CryptoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A2358D2DC7B3E70024C6F1 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
 		B9A2358F2DC7BDD70024C6F1 /* CoinLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinLogoView.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 		B9B180E42DBFE33000E428BB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				B93B34AD2DD3CEFF0076D191 /* HapticManager.swift */,
 				B9B180E22DBFE33000E428BB /* LocalFileManager.swift */,
 				B9B180E32DBFE33000E428BB /* NetworkingManager.swift */,
 			);
@@ -318,6 +321,7 @@
 				B9ADDFD72DC51D0C00D9F725 /* MarketDataService.swift in Sources */,
 				B9B180F72DBFE33000E428BB /* CoinImageService.swift in Sources */,
 				B9B180F82DBFE33000E428BB /* LocalFileManager.swift in Sources */,
+				B93B34AE2DD3CF050076D191 /* HapticManager.swift in Sources */,
 				B9B180F92DBFE33000E428BB /* NetworkingManager.swift in Sources */,
 				B9A309C62DC25E39002D6857 /* StatisticModel.swift in Sources */,
 				B9B180FA2DBFE33000E428BB /* ContentView.swift in Sources */,

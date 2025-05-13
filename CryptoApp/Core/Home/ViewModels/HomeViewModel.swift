@@ -18,6 +18,8 @@ class HomeViewModel: ObservableObject{
     
     @Published var searchText: String = ""
     
+    @Published var isLoading: Bool = false
+    
     private let coinDataService = CoinDataService()
     private let marketDataService = MarketDataService()
     private let portfolioDataService = PortfolioDataService()
@@ -27,6 +29,7 @@ class HomeViewModel: ObservableObject{
         addSubscribers()
     }
     
+    //MARK: нужно понять что за хронология
     func addSubscribers() {
         //Updates allCoins
         $searchText
@@ -38,29 +41,31 @@ class HomeViewModel: ObservableObject{
             }
             .store(in: &cancellables)
         
-        //Updates marketData
-        marketDataService.$marketData
-            .map (mapGlobalMarketData)
-            .sink { [weak self] (returnedStats) in
-                self?.statistics = returnedStats
-            }
-            .store(in: &cancellables)
-        
         //Updates portfolioCoins
         $allCoins
             .combineLatest(portfolioDataService.$savedEntities)
-            .map { (coinModels, portfolioEntities) -> [CoinModel] in
-                coinModels.compactMap { (coin) -> CoinModel? in
-                    guard let entity = portfolioEntities.first(where: {$0.coinID == coin.id}) else {
-                        return nil
-                    }
-                    return coin.updateHoldings(amount: entity.amount)
-                }
-            }
+            .map(mapAllCoinsToPortfolioCoins)
             .sink {[weak self] returnedCoins in
                 self?.portfolioCoins = returnedCoins
             }
             .store(in: &cancellables)
+        
+        //Updates marketData
+        marketDataService.$marketData
+            .combineLatest($portfolioCoins)
+            .map (mapGlobalMarketData)
+            .sink { [weak self] (returnedStats) in
+                self?.statistics = returnedStats
+                self?.isLoading = false
+            }
+            .store(in: &cancellables)
+    }
+    
+    func reloadData() {
+        isLoading = true
+        coinDataService.getCoins()
+        marketDataService.getData()
+        HapticManager.notification(type: .success)
     }
     
     func updatePortfolio(coin: CoinModel, amount: Double) {
@@ -80,8 +85,16 @@ class HomeViewModel: ObservableObject{
         return filteredCoins
     }
     
+    private func mapAllCoinsToPortfolioCoins(coinModels: [CoinModel], portfolioEntities: [PortfolioEntity]) -> [CoinModel]{
+        coinModels.compactMap { (coin) -> CoinModel? in
+            guard let entity = portfolioEntities.first(where: {$0.coinID == coin.id}) else {
+                return nil
+            }
+            return coin.updateHoldings(amount: entity.amount)
+        }
+    }
     
-    private func mapGlobalMarketData(marketDataModel: MarketDataModel?) -> [StatisticModel] {
+    private func mapGlobalMarketData(marketDataModel: MarketDataModel?, portfolioCoins: [CoinModel]) -> [StatisticModel] {
         var stats: [StatisticModel] = []
         
         guard let data = marketDataModel else {
@@ -100,7 +113,30 @@ class HomeViewModel: ObservableObject{
         stats.append(volume)
         stats.append(btcDominance)
         
-        let portfolio = StatisticModel(title: "Porfolio Value", value: "$0.00", percetageChange: 0)
+        
+        let portfolioValue = portfolioCoins
+            .map { coin -> Double in
+                return coin.currentHoldingsValue
+            }
+            .reduce(0, +) // нужна для того что бы сложить все эллементы в массиве
+        
+        let previousValue = portfolioCoins
+            .map { coin -> Double in
+                let currnetValue = coin.currentHoldingsValue
+                let percentChange = coin.priceChangePercentage24H ?? 0 / 100
+                let previousValue = currnetValue / (1 + percentChange)
+                return previousValue
+            }
+            .reduce(0, +)
+        
+        let percentageChange = ((portfolioValue - previousValue) / previousValue) * 100
+        
+        let portfolio = StatisticModel(
+            title: "Porfolio Value",
+            value: "\(portfolioValue.asCurrencyWith2Decimals())",
+            percetageChange: percentageChange
+        )
+        
         stats.append(portfolio)
         
         return stats
