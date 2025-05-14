@@ -12,9 +12,9 @@ import Combine
 class HomeViewModel: ObservableObject{
     
     @Published var statistics: [StatisticModel] = []
-    
     @Published var allCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
+    @Published var sortOption: SortOption = .holdings
     
     @Published var searchText: String = ""
     
@@ -25,6 +25,15 @@ class HomeViewModel: ObservableObject{
     private let portfolioDataService = PortfolioDataService()
     private var cancellables: Set<AnyCancellable> = []
     
+    enum SortOption {
+        case rank
+        case rankReverse
+        case holdings
+        case holdingsReverse
+        case price
+        case priceReverse
+    }
+    
     init() {
         addSubscribers()
     }
@@ -33,9 +42,9 @@ class HomeViewModel: ObservableObject{
     func addSubscribers() {
         //Updates allCoins
         $searchText
-            .combineLatest(coinDataService.$allCoins)
+            .combineLatest(coinDataService.$allCoins, $sortOption)
             .debounce(for: .seconds(0.5), scheduler: DispatchQueue.main)
-            .map(filterCoins)
+            .map(filterandSort)
             .sink { [weak self] returnedCoins in
                 self?.allCoins = returnedCoins
             }
@@ -46,7 +55,8 @@ class HomeViewModel: ObservableObject{
             .combineLatest(portfolioDataService.$savedEntities)
             .map(mapAllCoinsToPortfolioCoins)
             .sink {[weak self] returnedCoins in
-                self?.portfolioCoins = returnedCoins
+                guard let self = self else {return}
+                self.portfolioCoins = self.sortPortfolioCoinsIfNeeded(coins: returnedCoins)
             }
             .store(in: &cancellables)
         
@@ -72,6 +82,12 @@ class HomeViewModel: ObservableObject{
         portfolioDataService.updatePortfolio(coin: coin, amount: amount)
     }
     
+    private func filterandSort(text: String, coins: [CoinModel], sort: SortOption) -> [CoinModel]{
+        var updatedCoins = filterCoins(text: text, coins: coins)
+        sortCoins(sort: sort, coins: &updatedCoins)
+        return updatedCoins
+    }
+    
     private func filterCoins(text: String, coins: [CoinModel]) -> [CoinModel] {
         guard !text.isEmpty else {return coins}
         
@@ -83,6 +99,43 @@ class HomeViewModel: ObservableObject{
             || coin.id.lowercased().contains(lowercasedText)
         }
         return filteredCoins
+    }
+    
+    private func sortCoins(sort: SortOption, coins: inout [CoinModel]) {
+        switch sort {
+        case .rank, .holdings:
+            coins.sort { coin1, coin2 in
+                coin1.rank < coin2.rank
+            }
+        case .rankReverse, .holdingsReverse:
+            coins.sort { coin1, coin2 in
+                coin1.rank > coin2.rank
+            }
+        case .price:
+            coins.sort { coin1, coin2 in
+                coin1.currentPrice > coin2.currentPrice
+            }
+        case .priceReverse:
+            coins.sort { coin1, coin2 in
+                coin1.currentPrice < coin2.currentPrice
+            }
+        }
+    }
+    
+    private func sortPortfolioCoinsIfNeeded(coins: [CoinModel]) -> [CoinModel] {
+        //will only sort by holdings or by reverseHoldings
+        switch sortOption {
+        case .holdings:
+            return coins.sorted { coin1, coin2 in
+                coin1.currentHoldingsValue > coin2.currentHoldingsValue
+            }
+        case .holdingsReverse:
+            return coins.sorted { coin1, coin2 in
+                coin1.currentHoldingsValue < coin2.currentHoldingsValue
+            }
+        default:
+            return coins
+        }
     }
     
     private func mapAllCoinsToPortfolioCoins(coinModels: [CoinModel], portfolioEntities: [PortfolioEntity]) -> [CoinModel]{
@@ -102,17 +155,10 @@ class HomeViewModel: ObservableObject{
         }
         
         let marketCap = StatisticModel(title: "Market Cap", value: data.marketCap, percetageChange: data.marketCapChangePercentage24HUsd)
-        stats.append(marketCap)
         
         let volume = StatisticModel(title: "Volume", value: data.volume)
-        stats.append(volume)
         
         let btcDominance = StatisticModel(title: "BTC Dominance", value: data.btcDominance)
-        stats.append(btcDominance)
-        
-        stats.append(volume)
-        stats.append(btcDominance)
-        
         
         let portfolioValue = portfolioCoins
             .map { coin -> Double in
@@ -137,7 +183,12 @@ class HomeViewModel: ObservableObject{
             percetageChange: percentageChange
         )
         
+        stats.append(volume)
+        stats.append(btcDominance)
         stats.append(portfolio)
+        stats.append(marketCap)
+        stats.append(volume)
+        stats.append(btcDominance)
         
         return stats
     }
