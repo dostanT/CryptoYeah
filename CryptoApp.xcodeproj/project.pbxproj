@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B928C94E2DDDCC0C0088FF90 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B928C94D2DDDCC080088FF90 /* DetailView.swift */; };
 		B93B34AE2DD3CF050076D191 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B93B34AD2DD3CEFF0076D191 /* HapticManager.swift */; };
 		B9A2358E2DC7B3EC0024C6F1 /* PortfolioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A2358D2DC7B3E70024C6F1 /* PortfolioView.swift */; };
 		B9A235902DC7BDDB0024C6F1 /* CoinLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A2358F2DC7BDD70024C6F1 /* CoinLogoView.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B928C94D2DDDCC080088FF90 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		B93B34AD2DD3CEFF0076D191 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		B99A6BA72DB2BC4A000907E8 /* CryptoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9A2358D2DC7B3E70024C6F1 /* PortfolioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioView.swift; sourceTree = "<group>"; };
@@ -84,6 +86,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B928C9492DDDCBD60088FF90 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B928C94B2DDDCBF60088FF90 /* View */,
+				B928C94C2DDDCBFB0088FF90 /* ViewModel */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		B928C94B2DDDCBF60088FF90 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B928C94D2DDDCC080088FF90 /* DetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B928C94C2DDDCBFB0088FF90 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		B99A6B9E2DB2BC4A000907E8 = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +189,7 @@
 			children = (
 				B9B180D02DBFE33000E428BB /* Components */,
 				B9B180D62DBFE33000E428BB /* Home */,
+				B928C9492DDDCBD60088FF90 /* Detail */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -310,6 +337,7 @@
 				B9B180EF2DBFE33000E428BB /* HomeView.swift in Sources */,
 				B9A309C82DC263ED002D6857 /* StatisticView.swift in Sources */,
 				B9B180F02DBFE33000E428BB /* HomeViewModel.swift in Sources */,
+				B928C94E2DDDCC0C0088FF90 /* DetailView.swift in Sources */,
 				B9B180F12DBFE33000E428BB /* Color.swift in Sources */,
 				B9B180F22DBFE33000E428BB /* Double.swift in Sources */,
 				B9B180F32DBFE33000E428BB /* PreviewProvider.swift in Sources */,
