@@ -22,6 +22,7 @@ struct DetailLoadingView: View{
 struct DetailView: View {
     
     @StateObject private var vm: DetailViewModel
+    @State private var showFullDesription: Bool = false
     private let columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -42,11 +43,13 @@ struct DetailView: View {
             VStack(spacing: 20){
                 overviewTitle
                 Divider()
+                descriptionSection
                 overviewGrid
-                
                 additionalTitle
                 Divider()
                 additionalGrid
+                websiteSection
+                
             }
             .padding()
         }
@@ -61,6 +64,48 @@ struct DetailView: View {
 
 
 extension DetailView {
+    private var websiteSection: some View {
+        VStack(alignment: .leading, spacing: 20){
+            if let websiteString = vm.websiteURL,
+                let url = URL(string: websiteString) {
+                Link("Website", destination: url)
+            }
+            
+            if let redditURL = vm.redditURL,
+               let url = URL(string: redditURL) {
+                Link("Reddit", destination: url)
+            }
+        }
+        .foregroundStyle(Color.blue)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .font(.headline)
+    }
+    
+    private var descriptionSection: some View {
+        ZStack{
+            if let coinDescription = vm.coinDescription, !coinDescription.isEmpty {
+                VStack(alignment: .leading){
+                    Text(coinDescription)
+                        .lineLimit(showFullDesription ? nil : 3)
+                        .font(.callout)
+                        .foregroundStyle(Color.theme.secondaryTextColor)
+                    
+                    Button {
+                        withAnimation(.easeInOut) {
+                            showFullDesription.toggle()
+                        }
+                    } label: {
+                        Text(showFullDesription ? "Less" : "Read more...")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .padding(.vertical, 4)
+                    }
+                    .foregroundStyle(Color.blue)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+    }
     
     private var navigationVarTrailingItems: some View {
         HStack{
