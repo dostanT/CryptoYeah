@@ -130,7 +130,6 @@ extension HomeView {
                         segue(coin: coin)
                     }
                     .listRowBackground(Color.theme.backgroundColor)
-                
             }
         }
         .listStyle(PlainListStyle())

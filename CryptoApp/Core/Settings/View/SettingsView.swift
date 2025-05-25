@@ -13,13 +13,25 @@ struct SettingsView: View {
     let coingeckoURL = URL(string: "https://www.coingecko.com")!
     let personalURL = URL(string: "https://github.com/dostanT")!
     @Binding var showSettingsSheet: Bool
+    
     var body: some View {
         NavigationStack {
-            List{
-                overview
-                coinGeckoSection
-                developerSection
-                applicationSection
+            ZStack{
+                Color.theme.backgroundColor.ignoresSafeArea()
+                
+                //content layer
+                List{
+                    overview
+                        .listRowBackground(Color.theme.redColor)
+                    coinGeckoSection
+                        .listRowBackground(Color.theme.redColor)
+                    developerSection
+                        .listRowBackground(Color.theme.redColor)
+                    applicationSection
+                        .listRowBackground(Color.theme.redColor)
+                }
+                .scrollContentBackground(.hidden)
+                
             }
             .font(.headline)
             .listStyle(GroupedListStyle())

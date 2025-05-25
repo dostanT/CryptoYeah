@@ -16,6 +16,8 @@ struct CryptoAppApp: App {
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(Color.theme.accentColor)]
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(Color.theme.accentColor)]
+        UINavigationBar.appearance().tintColor = UIColor(Color.theme.accentColor)
+        UITableView.appearance().backgroundColor = UIColor.clear
     }
     
     var body: some Scene {

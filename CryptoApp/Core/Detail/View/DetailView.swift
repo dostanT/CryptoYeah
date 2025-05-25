@@ -53,6 +53,7 @@ struct DetailView: View {
             }
             .padding()
         }
+        .background(Color.theme.backgroundColor.ignoresSafeArea())
         .toolbar(content: {
             ToolbarItem(placement: .topBarTrailing) {
                 navigationVarTrailingItems
