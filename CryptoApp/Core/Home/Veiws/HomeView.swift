@@ -40,7 +40,14 @@ struct HomeView: View {
                     allCoinsList
                 }
                 else{
-                    portfolioCoinsList
+                    ZStack(alignment: .top) {
+                        if vm.portfolioCoins.isEmpty && vm.searchText.isEmpty {
+                            portfolioEmptyText
+                        } else {
+                            portfolioCoinsList
+                        }
+                    }
+                    
                 }
                 
                 Spacer(minLength: 0)
@@ -72,6 +79,15 @@ struct HomeView_Previews: PreviewProvider {
 }
 
 extension HomeView {
+    private var portfolioEmptyText: some View {
+        Text("You haven't added any coins to your portfolio yet. Click the + button to get started! 🧐")
+            .font(.callout)
+            .foregroundColor(Color.theme.accentColor)
+            .fontWeight(.medium)
+            .multilineTextAlignment(.center)
+            .padding(50)
+    }
+    
     private var homeHeader: some View {
         HStack {
             CircleButtonView(iconName: showPortfolio ? "plus" : "info")

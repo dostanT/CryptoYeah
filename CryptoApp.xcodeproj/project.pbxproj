@@ -39,7 +39,6 @@
 		B9B180F72DBFE33000E428BB /* CoinImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B180E02DBFE33000E428BB /* CoinImageService.swift */; };
 		B9B180F82DBFE33000E428BB /* LocalFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B180E22DBFE33000E428BB /* LocalFileManager.swift */; };
 		B9B180F92DBFE33000E428BB /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B180E32DBFE33000E428BB /* NetworkingManager.swift */; };
-		B9B180FA2DBFE33000E428BB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B180E62DBFE33000E428BB /* ContentView.swift */; };
 		B9B180FB2DBFE33000E428BB /* CryptoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B180E72DBFE33000E428BB /* CryptoAppApp.swift */; };
 		B9B180FC2DBFE33000E428BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B180E52DBFE33000E428BB /* Assets.xcassets */; };
 		B9D993342DE2FF8800CE6A09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9D993332DE2FF8800CE6A09 /* LaunchScreen.storyboard */; };
@@ -84,7 +83,6 @@
 		B9B180E22DBFE33000E428BB /* LocalFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileManager.swift; sourceTree = "<group>"; };
 		B9B180E32DBFE33000E428BB /* NetworkingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingManager.swift; sourceTree = "<group>"; };
 		B9B180E52DBFE33000E428BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B9B180E62DBFE33000E428BB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B9B180E72DBFE33000E428BB /* CryptoAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAppApp.swift; sourceTree = "<group>"; };
 		B9D993312DE2FF5D00CE6A09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B9D993332DE2FF8800CE6A09 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -298,7 +296,6 @@
 				B9B180E12DBFE33000E428BB /* Services */,
 				B9B180E42DBFE33000E428BB /* Utilities */,
 				B9B180E52DBFE33000E428BB /* Assets.xcassets */,
-				B9B180E62DBFE33000E428BB /* ContentView.swift */,
 				B9B180E72DBFE33000E428BB /* CryptoAppApp.swift */,
 			);
 			path = CryptoApp;
@@ -422,7 +419,6 @@
 				B9B180F92DBFE33000E428BB /* NetworkingManager.swift in Sources */,
 				B95A590D2DDF766200533F4E /* CoinDetailDataService.swift in Sources */,
 				B9A309C62DC25E39002D6857 /* StatisticModel.swift in Sources */,
-				B9B180FA2DBFE33000E428BB /* ContentView.swift in Sources */,
 				B9B180FB2DBFE33000E428BB /* CryptoAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
