@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct CryptoAppApp: App {
     @StateObject private var vm: HomeViewModel = .init()
+    @State private var showLaunchView: Bool = true
     
     //изменяет цвет navigation title (Круто!!!!!)
     init() {
@@ -19,11 +20,20 @@ struct CryptoAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack{
-                HomeView()
-                    .navigationBarHidden(true)
+            ZStack{
+                NavigationStack{
+                    HomeView()
+                        .navigationBarHidden(true)
+                }
+                .environmentObject(vm)
+                ZStack{
+                    if showLaunchView{
+                        LaunchView(showLaunchView: $showLaunchView)
+                            .transition(.move(edge: .leading))
+                    }
+                }
+                .zIndex(2.0)
             }
-            .environmentObject(vm)
         }
     }
 }

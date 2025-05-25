@@ -42,6 +42,8 @@
 		B9B180FA2DBFE33000E428BB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B180E62DBFE33000E428BB /* ContentView.swift */; };
 		B9B180FB2DBFE33000E428BB /* CryptoAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B180E72DBFE33000E428BB /* CryptoAppApp.swift */; };
 		B9B180FC2DBFE33000E428BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B180E52DBFE33000E428BB /* Assets.xcassets */; };
+		B9D993342DE2FF8800CE6A09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B9D993332DE2FF8800CE6A09 /* LaunchScreen.storyboard */; };
+		B9D993362DE3008400CE6A09 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D993352DE3007F00CE6A09 /* LaunchView.swift */; };
 		B9E3D0082DE16D1E006F9821 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E3D0072DE16D1D006F9821 /* Date.swift */; };
 		B9E508F92DCCEE770068C898 /* PortfolioContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B9E508F72DCCEE770068C898 /* PortfolioContainer.xcdatamodeld */; };
 		B9E508FB2DCCF2210068C898 /* PortfolioDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E508FA2DCCF2180068C898 /* PortfolioDataService.swift */; };
@@ -84,6 +86,9 @@
 		B9B180E52DBFE33000E428BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9B180E62DBFE33000E428BB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B9B180E72DBFE33000E428BB /* CryptoAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAppApp.swift; sourceTree = "<group>"; };
+		B9D993312DE2FF5D00CE6A09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		B9D993332DE2FF8800CE6A09 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B9D993352DE3007F00CE6A09 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		B9E3D0072DE16D1D006F9821 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		B9E508F82DCCEE770068C898 /* PortfolioContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PortfolioContainer.xcdatamodel; sourceTree = "<group>"; };
 		B9E508FA2DCCF2180068C898 /* PortfolioDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioDataService.swift; sourceTree = "<group>"; };
@@ -227,6 +232,7 @@
 		B9B180D72DBFE33000E428BB /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B9D993322DE2FF7B00CE6A09 /* Launch */,
 				B992D24D2DE1ECB2002AD6B9 /* Settings */,
 				B9B180D02DBFE33000E428BB /* Components */,
 				B9B180D62DBFE33000E428BB /* Home */,
@@ -285,6 +291,7 @@
 		B9B180E82DBFE33000E428BB /* CryptoApp */ = {
 			isa = PBXGroup;
 			children = (
+				B9D993312DE2FF5D00CE6A09 /* Info.plist */,
 				B9B180D72DBFE33000E428BB /* Core */,
 				B9B180DC2DBFE33000E428BB /* Extension */,
 				B9B180DE2DBFE33000E428BB /* Models */,
@@ -295,6 +302,15 @@
 				B9B180E72DBFE33000E428BB /* CryptoAppApp.swift */,
 			);
 			path = CryptoApp;
+			sourceTree = "<group>";
+		};
+		B9D993322DE2FF7B00CE6A09 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				B9D993352DE3007F00CE6A09 /* LaunchView.swift */,
+				B9D993332DE2FF8800CE6A09 /* LaunchScreen.storyboard */,
+			);
+			path = Launch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9B180FC2DBFE33000E428BB /* Assets.xcassets in Resources */,
+				B9D993342DE2FF8800CE6A09 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +393,7 @@
 				B9A2358E2DC7B3EC0024C6F1 /* PortfolioView.swift in Sources */,
 				B9E508F92DCCEE770068C898 /* PortfolioContainer.xcdatamodeld in Sources */,
 				B992D2532DE1EFDB002AD6B9 /* SettingsView.swift in Sources */,
+				B9D993362DE3008400CE6A09 /* LaunchView.swift in Sources */,
 				B9B180EC2DBFE33000E428BB /* CoinImageViewModel.swift in Sources */,
 				B9B180ED2DBFE33000E428BB /* SearchBarView.swift in Sources */,
 				B9B180EE2DBFE33000E428BB /* CoinRowView.swift in Sources */,
@@ -543,10 +561,10 @@
 				DEVELOPMENT_TEAM = QA9SSNLZN6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CryptoApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Crypto Yeah";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -571,10 +589,10 @@
 				DEVELOPMENT_TEAM = QA9SSNLZN6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CryptoApp/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Crypto Yeah";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
