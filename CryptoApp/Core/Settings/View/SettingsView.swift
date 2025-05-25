@@ -22,13 +22,13 @@ struct SettingsView: View {
                 //content layer
                 List{
                     overview
-                        .listRowBackground(Color.theme.redColor)
+                        .listRowBackground(Color.theme.backgroundColor)
                     coinGeckoSection
-                        .listRowBackground(Color.theme.redColor)
+                        .listRowBackground(Color.theme.backgroundColor)
                     developerSection
-                        .listRowBackground(Color.theme.redColor)
+                        .listRowBackground(Color.theme.backgroundColor)
                     applicationSection
-                        .listRowBackground(Color.theme.redColor)
+                        .listRowBackground(Color.theme.backgroundColor)
                 }
                 .scrollContentBackground(.hidden)
                 
